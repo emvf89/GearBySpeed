@@ -46,6 +46,8 @@
 			this.lastGear = -1;
 			navigator.geolocation.watchPosition(function (position) {
 				document.getElementById('speed').innerHTML = position.coords.speed;
+				document.getElementById('latitude').innerHTML = position.coords.latitude;
+				document.getElementById('longitude').innerHTML = position.coords.longitude;
 				setGearBySpeed(position.coords.speed);
 			});
 		}
@@ -68,7 +70,13 @@
 				return;
 			}
 			this.lastGear = gear
-			document.getElementById('gear').innerHTML = gear;
+			if gear = 0 {
+				document.getElementById('gear').innerHTML = 'N';
+			}
+			else{
+				document.getElementById('gear').innerHTML = gear;
+			}
+			
 		}
 
 		function flashRed() {
@@ -84,7 +92,7 @@
 				document.body.classList.remove('green')
 			}, 500)
 		}
-		
+		init();
 	</script>
 </head>
 
@@ -92,7 +100,9 @@
 	<div>
 		<h1 id="gear">N</span>
 		<p id="speed">0</p>
-        <button onclick="init()">Reset</button>
+        	<button onclick="init()">Reset</button>
+		<p id="latitude">0</p>
+		<p id="longitude">0</p>
 	</div>
 </body>
 
