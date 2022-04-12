@@ -50,6 +50,12 @@
 				setGearBySpeed(position.coords.speed);
 			});
 		};
+		
+		this.lastGear = 0;
+		navigator.geolocation.watchPosition(function (position) {
+			document.getElementById('positionInfo').innerHTML = position.coords.latitude;
+			setGearBySpeed(position.coords.speed);
+		});
 
 		function setGearBySpeed(speed) {
 			var gear = 0
