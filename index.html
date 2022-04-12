@@ -17,7 +17,7 @@
 			color: aliceblue;
 		}
 		p {
-			font-size: 12px;
+			font-size: 50px;
 			color: aliceblue;
 		}
 
@@ -42,12 +42,13 @@
 		}
 	</style>
 	<script>
-
-		this.lastGear = 0;
-		navigator.geolocation.watchPosition(function (position) {
-			document.getElementById('positionInfo').innerHTML = position.coords.speed;
-			setGearBySpeed(position.coords.speed);
-		});
+		function init(){
+			this.lastGear = 0;
+			navigator.geolocation.watchPosition(function (position) {
+				document.getElementById('speed').innerHTML = position.coords.speed;
+				setGearBySpeed(position.coords.speed);
+			});
+		}
 
 		function setGearBySpeed(speed) {
 			var gear = 0
@@ -87,10 +88,10 @@
 	</script>
 </head>
 
-<body>
+<body onload="init()">
 	<div id="tripmeter">
 		<h1 id="gear">N</span>
-		<p id="speed"></p> km/h
+		<p id="speed"></p>
 	</div>
 </body>
 
