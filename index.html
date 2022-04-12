@@ -41,116 +41,6 @@
 			}
 		}
 	</style>
-	<script>6
-		function start(){
-			this.lastGear = -1;
-			navigator.geolocation.watchPosition(function (position) {
-				document.getElementById('speed').innerHTML = position.coords.speed;
-				document.getElementById('latitude').innerHTML = position.coords.latitude;
-				document.getElementById('longitude').innerHTML = position.coords.longitude;
-				setGearBySpeed(position.coords.speed);
-			});
-		}
-
-		function setGearBySpeed(speed) {
-			var gear = 0
-			if (speed > 60) { gear = 5; }
-			else if (speed > 45) { gear = 4; }
-			else if (speed > 32) { gear = 3; }
-			else if (speed > 20) { gear = 2; }
-			else if (speed > 8) { gear = 1; }
-			else { gear = 0; }
-			if (gear > this.lastGear) {
-				new Audio('button-42.mp3').play();
-				flashRed();
-			} else if (gear < this.lastGear) {
-				new Audio('beep-07a.mp3').play();
-				flashRed();
-			} else {
-				return;
-			}
-			this.lastGear = gear
-			if gear = 0 {
-				document.getElementById('gear').innerHTML = 'N';
-			}
-			else{
-				document.getElementById('gear').innerHTML = gear;
-			}
-			
-		}
-
-		function flashRed() {
-			document.body.classList.add('red')
-			window.setTimeout(function () {
-				document.body.classList.remove('red')
-			}, 500)
-		}
-
-		function flashGreen() {
-			document.body.classList.add('green')
-			window.setTimeout(function () {
-				document.body.classList.remove('green')
-			}, 500)
-		}
-	</script>
-</head>
-
-<body>
-	<div>
-		<h1 id="gear">N</span>
-		<p id="speed">0</p>
-        	<button onclick="start()">Reset</button>
-		<p id="latitude">0</p>
-		<p id="longitude">0</p>
-	</div>
-</body>
-
-</html>
-
-
-<!DOCTYPE html>
-<html>
-
-<head>
-	<style>
-		div {
-			text-align: center;
-			vertical-align: middle;
-		}
-
-		body {
-			background-color: black;
-		}
-
-		h1 {
-			font-size: 100px;
-			color: aliceblue;
-		}
-		p {
-			font-size: 50px;
-			color: aliceblue;
-		}
-
-		.red {
-			animation: redflash 0.5s 2 alternate ease-out;
-		}
-
-		.green {
-			animation: greenflash 0.5s 2 alternate ease-out;
-		}
-
-		@keyframes redflash {
-			to {
-				background-color: red;
-			}
-		}
-
-		@keyframes greenflash {
-			to {
-				background-color: green;
-			}
-		}
-	</style>
 	<script>
 		function setGearBySpeed(speed) {
 			var gear = 0;
@@ -219,7 +109,7 @@
 		<p id="speed">0</p>
         	<button onclick="start()">Reset</button>
 		<p id="latitude">0</p>
-		<p id="longitude">0</p>
+		<p id="longitude">0 - v1</p>
 	</div>
 </body>
 
