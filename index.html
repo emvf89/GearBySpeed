@@ -43,7 +43,7 @@
 	</style>
 	<script>
 		function init(){
-			this.lastGear = 0;
+			this.lastGear = -1;
 			navigator.geolocation.watchPosition(function (position) {
 				document.getElementById('speed').innerHTML = position.coords.speed;
 				setGearBySpeed(position.coords.speed);
@@ -85,15 +85,14 @@
 			}, 500)
 		}
 		
-		init();
-
 	</script>
 </head>
 
 <body>
 	<div>
 		<h1 id="gear">N</span>
-		<p id="speed"></p>
+		<p id="speed">0</p>
+        <button onclick="init()">Reset</button>
 	</div>
 </body>
 
