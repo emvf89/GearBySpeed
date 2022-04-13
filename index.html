@@ -50,12 +50,14 @@
 			else if (speed > 20) { gear = 2; }
 			else if (speed > 8) { gear = 1; }
 			else { gear = 0; }
-			if (gear > this.lastGear) {
-				this.upShiftSound.play();
-				flashRed();
-			} else if (gear < this.lastGear) {
-				this.upShiftSound.play();
-				//this.downShiftSound.play();
+			if (gear > this.lastGear) { //upshift
+				//Play sound and flash only if it is an upshift to >= 2nd gear...
+				if(gear > 1){
+					this.upShiftSound.play();
+					flashRed();
+				}
+			} else if (gear < this.lastGear) { //downshift
+				this.upShiftSound.play(); //this.downShiftSound.play();
 				flashRed();
 			} else {
 				return;
