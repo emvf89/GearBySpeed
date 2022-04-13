@@ -48,7 +48,7 @@
 			else if (speed > 45) { gear = 4; }
 			else if (speed > 32) { gear = 3; }
 			else if (speed > 20) { gear = 2; }
-			else if (speed > 8) { gear = 1; }
+			else if (speed > 1) { gear = 1; }
 			else { gear = 0; }
 			if (gear > this.lastGear) {
 				playSound('button-42.mp3');
@@ -133,7 +133,7 @@
 		<p id="speed">0</p>
         	<button onclick="start()">Reset</button>
 		<p id="latitude">0</p>
-		<p id="longitude">0 - v1</p>
+		<p id="longitude">0 - v2</p>
 	</div>
 </body>
 
