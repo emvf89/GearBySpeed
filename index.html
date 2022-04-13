@@ -48,13 +48,14 @@
 			else if (speed > 45) { gear = 4; }
 			else if (speed > 32) { gear = 3; }
 			else if (speed > 20) { gear = 2; }
-			else if (speed > 1) { gear = 1; }
+			else if (speed > 8) { gear = 1; }
 			else { gear = 0; }
 			if (gear > this.lastGear) {
 				this.upShiftSound.play();
 				flashRed();
 			} else if (gear < this.lastGear) {
-				this.downShiftSound.play();
+				this.upShiftSound.play();
+				//this.downShiftSound.play();
 				flashRed();
 			} else {
 				return;
@@ -107,7 +108,7 @@
 		function onGeolocationSuccess(position) {
 			console.log(position);
 			if(position.coords.speed != null){
-				document.getElementById('speed').innerHTML = position.coords.speed;
+				document.getElementById('speed').innerHTML =  Math.round(position.coords.speed)' km/h';
 				setGearBySpeed(position.coords.speed);
 			}else{
 				document.getElementById('speed').innerHTML = '0';
@@ -131,7 +132,7 @@
 
 <body>
 	<div>
-		<h1 id="gear">N</h1>
+		<p id="gear">N</p>
 		<p id="speed">0</p>
         	<button onclick="start()">Reset</button>
 		<p id="latitude">0</p>
