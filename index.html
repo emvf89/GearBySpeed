@@ -108,7 +108,7 @@
 		function onGeolocationSuccess(position) {
 			console.log(position);
 			if(position.coords.speed != null){
-				document.getElementById('speed').innerHTML =  Math.round(position.coords.speed)' km/h';
+				document.getElementById('speed').innerHTML =  Math.round(position.coords.speed);
 				setGearBySpeed(position.coords.speed);
 			}else{
 				document.getElementById('speed').innerHTML = '0';
@@ -132,11 +132,11 @@
 
 <body>
 	<div>
-		<p id="gear">N</p>
+		<h1 id="gear">N</h1>
 		<p id="speed">0</p>
         	<button onclick="start()">Reset</button>
 		<p id="latitude">0</p>
-		<p id="longitude">0 - v3</p>
+		<p id="longitude">0 - v1</p>
 	</div>
 </body>
 
