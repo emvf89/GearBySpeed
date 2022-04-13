@@ -97,21 +97,31 @@
 		
 		function start(){
 			this.lastGear = -1;
-			navigator.geolocation.watchPosition(function (position) {
-				console.log(position);
-				if(position.coords.speed != null){
-					document.getElementById('speed').innerHTML = position.coords.speed;
-					setGearBySpeed(position.coords.speed);
-				}else{
-					document.getElementById('speed').innerHTML = '0';
-					setGearBySpeed(0);
-				}
-				if(position.coords.latitude != null && position.coords.longitude != null){
-					document.getElementById('latitude').innerHTML = position.coords.latitude;
-					document.getElementById('longitude').innerHTML = position.coords.longitude;
-				}
-			});
+			navigator.geolocation.watchPosition(onGeolocationSuccess, onGeolocationError, {enableHighAccuracy: true, timeout: 5000, maximumAge: 0});
 		}
+
+		function onGeolocationSuccess(position) {
+			console.log(position);
+			if(position.coords.speed != null){
+				document.getElementById('speed').innerHTML = position.coords.speed;
+				setGearBySpeed(position.coords.speed);
+			}else{
+				document.getElementById('speed').innerHTML = '0';
+				setGearBySpeed(0);
+			}
+			if(position.coords.latitude != null && position.coords.longitude != null){
+				document.getElementById('latitude').innerHTML = position.coords.latitude;
+				document.getElementById('longitude').innerHTML = position.coords.longitude;
+			}
+		}
+		
+		function onGeolocationError(error) {
+			document.getElementById('speed').innerHTML = '0';
+			setGearBySpeed(0);
+			document.getElementById('latitude').innerHTML = 'onGeolocationError';
+			document.getElementById('longitude').innerHTML = 'onGeolocationError';
+		}
+			
 	</script>
 </head>
 
@@ -121,7 +131,7 @@
 		<p id="speed">0</p>
         	<button onclick="start()">Reset</button>
 		<p id="latitude">0</p>
-		<p id="longitude">0 - v2</p>
+		<p id="longitude">0 - v3</p>
 	</div>
 </body>
 
