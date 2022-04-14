@@ -44,12 +44,12 @@
 	<script>
 		function setGearBySpeed(speed) {
 			var gear = 0;
-			if (speed > 60) { gear = 5; }
-			else if (speed > 45) { gear = 4; }
-			else if (speed > 32) { gear = 3; }
-			else if (speed > 20) { gear = 2; }
-			else if (speed > 8) { gear = 1; }
-			else { gear = 0; }
+			for (let i = 0; i < this.targetSpeed.length; i++) {
+				if (speed > this.targetSpeed[i]/3.6){
+					gear = this.targetSpeed.length-i;
+					break;
+				}
+			}
 			if (gear > this.lastGear) { //upshift
 				//Play sound and flash only if it is an upshift to >= 2nd gear...
 				if(gear > 1){
@@ -99,6 +99,7 @@
 		}
 		
 		function start(){
+			this.targetSpeed = [60,45,32,20,8]; //Km/h
 			this.downShiftSound = createSound('beep-07a.mp3');
 			this.upShiftSound = createSound('button-42.mp3');
 			this.upShiftSound.play();
@@ -110,7 +111,7 @@
 		function onGeolocationSuccess(position) {
 			console.log(position);
 			if(position.coords.speed != null){
-				document.getElementById('speed').innerHTML =  Math.round(position.coords.speed);
+				document.getElementById('speed').innerHTML =  Math.round(position.coords.speed*3.6);
 				setGearBySpeed(position.coords.speed);
 			}else{
 				document.getElementById('speed').innerHTML = '0';
